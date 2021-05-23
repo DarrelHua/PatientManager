@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <limits>
 #include "Patient.cpp"
 
 using namespace std;
@@ -31,10 +32,15 @@ class PatientManager {
                 //Not sure if this is needed
                 // if (item < 1 || item > 4);
                 //     throw -1;
+                if (cin.fail()) {
+                    throw exception();
+                }
 
             } catch (exception e) {
                 cout << "(x) Wrong choice." <<endl;
                 item = 0;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
             }
 
             if(item == 1) {
@@ -46,9 +52,11 @@ class PatientManager {
             } else if(item == 4) {
                 cout << "Program terminated. Goodbye!\n";
                 exit(0);
-            } else if (item <1 || item >4){
+            } else if (item < 0|| item >4){
                 cout << "(x) Wrong choice." <<endl;
                 item = 0;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
             }
         }
     }
