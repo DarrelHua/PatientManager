@@ -2,6 +2,7 @@
 //emergency # (1-5, 5 being very urgent)
 #include <iostream>
 using namespace std;
+#pragma once;
 
 class Patient {
     private:
@@ -10,6 +11,11 @@ class Patient {
     int order;
 
     public:
+    Patient(string Name, int Emerg, int Order) {
+        name = Name;
+        emergency = Emerg;
+        order = Order;
+    }
 
     void setName(string Name) {
         name = Name;

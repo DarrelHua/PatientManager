@@ -11,8 +11,46 @@ class PatientManager {
     int order = 1;
 
     public:
-    void start() {
 
+    PatientManager() {
+        this->list = list;
+    }
+    void start() {
+        cout << "-------------------------" << endl;
+        cout << "       (1) New Patient\n";
+        cout << "       (2) Next Patient\n";
+        cout << "       (3) Waiting List\n";
+        cout << "       (4) Exit\n";
+        cout << "-------------------------" << endl;
+
+        while (true) {
+            int item = 0;
+            try {
+                cout << "Choose an item from the menu: ";
+                cin >> item;
+                //Not sure if this is needed
+                // if (item < 1 || item > 4);
+                //     throw -1;
+
+            } catch (exception e) {
+                cout << "(x) Wrong choice." <<endl;
+                item = 0;
+            }
+
+            if(item == 1) {
+                this->newPatient();
+            } else if(item == 2) {
+                this->nextPatient();
+            } else if(item == 3) {
+                this->waitingList();
+            } else if(item == 4) {
+                cout << "Program terminated. Goodbye!\n";
+                exit(0);
+            } else if (item <1 || item >4){
+                cout << "(x) Wrong choice." <<endl;
+                item = 0;
+            }
+        }
     }
 
     void newPatient() {
