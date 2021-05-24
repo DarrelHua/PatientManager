@@ -12,10 +12,52 @@ class PatientManager {
     int order = 1;
 
     public:
-
     PatientManager() {
         this->list = list;
     }
+
+    void newPatient() {
+        string name;
+        int emergency;
+        bool done = false;
+
+        cout << "Enter patient's name: ";
+        cin >> name;
+        cout << endl << "Enter emergency [1 (low) to 5(life-and-death)]: ";
+        
+
+        while (!done) {
+            try {
+                cin >> emergency;
+                while(emergency >5 || emergency <=0) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cout << "(x) Wrong choice. Try again: " << endl;
+                    cin >> emergency;
+                }
+                if (cin.fail()) {
+                    throw (emergency);
+                }
+                order++;
+                //list.add the patient
+                list.push(Patient(name,emergency,order));
+                done = true;
+            } catch (string e) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout << "(x) Wrong choice. Try again: " << endl;
+            }
+        }
+    }
+
+    void nextPatient() {
+
+    }
+
+    void waitingList() {
+
+    }
+
     void start() {
         cout << "-------------------------" << endl;
         cout << "       (1) New Patient\n";
@@ -59,17 +101,5 @@ class PatientManager {
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
             }
         }
-    }
-
-    void newPatient() {
-
-    }
-
-    void nextPatient() {
-
-    }
-
-    void waitingList() {
-
     }
 };
